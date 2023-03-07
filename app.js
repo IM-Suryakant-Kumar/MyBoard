@@ -6,6 +6,10 @@ const app = express(); // Initialize and server ready
 
 app.use(express.static("public"));
 
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: path.join(__dirname, "public") });
+});
+
 let port = process.env.PORT || 3000;
 let server = app.listen(port, () => {
   console.log("Listing to port " + port);
@@ -32,4 +36,4 @@ io.on("connection", (socket) => {
   });
 });
 
-module.exports = app
+module.exports = app;
