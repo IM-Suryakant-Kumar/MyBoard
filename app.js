@@ -1,3 +1,4 @@
+require("dotenv/config");
 const express = require("express"); // Access
 const socket = require("socket.io");
 
@@ -7,7 +8,7 @@ app.use(express.static("public"));
 
 let port = process.env.PORT || 3000;
 let server = app.listen(port, () => {
-  console.log("Listing to port " + port);
+  console.log(`App is running at http://localhost:${port}`);
 });
 
 let io = socket(server);
@@ -30,5 +31,3 @@ io.on("connection", (socket) => {
     io.sockets.emit("redoUndo", data);
   });
 });
-
-module.exports = app;
