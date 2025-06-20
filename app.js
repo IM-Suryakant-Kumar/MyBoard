@@ -1,12 +1,14 @@
 require("dotenv/config");
 const express = require("express"); // Access
+const cors = require("cors"); // Cross-Origin Resource Sharing
 const socket = require("socket.io");
 
 const app = express(); // Initialize and server ready
 
 app.use(express.static("public"));
+app.use(cors()); // Allow cross-origin requests
 
-let port = process.env.PORT || 3000;
+const port = process.env.PORT;
 let server = app.listen(port, () => {
   console.log(`App is running at http://localhost:${port}`);
 });
